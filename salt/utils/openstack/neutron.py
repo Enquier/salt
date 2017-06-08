@@ -260,7 +260,7 @@ class SaltNeutron(NeutronShell):
         '''
         Fetches information of a certain tenant's quotas
         '''
-        return self.network_conn.show_quota(tenant_id=tenant_id)
+        return self.network_conn.show_quota(project_id=tenant_id)
 
     def update_quota(self, tenant_id, subnet=None, router=None,
                      network=None, floatingip=None, port=None,
@@ -283,14 +283,14 @@ class SaltNeutron(NeutronShell):
             body['security_group'] = sec_grp
         if sec_grp_rule:
             body['security_group_rule'] = sec_grp_rule
-        return self.network_conn.update_quota(tenant_id=tenant_id,
+        return self.network_conn.update_quota(project_id=tenant_id,
                                               body={'quota': body})
 
     def delete_quota(self, tenant_id):
         '''
         Delete the specified tenant's quota value
         '''
-        ret = self.network_conn.delete_quota(tenant_id=tenant_id)
+        ret = self.network_conn.delete_quota(project_id=tenant_id)
         return ret if ret else True
 
     def list_extensions(self):
