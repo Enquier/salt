@@ -329,9 +329,11 @@ class SaltNeutron(NeutronShell):
         '''
         port_id = self._find_port_id(port)
         if allowed_address_pairs is not None:
+            log.debug(allowed_address_pairs)
             body = {'name': name,
                     'admin_state_up': admin_state_up,
                     'allowed_address_pairs': allowed_address_pairs}
+            log.debug(body)
         else:
             body = {'name': name,
                     'admin_state_up': admin_state_up}
