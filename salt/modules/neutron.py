@@ -359,6 +359,15 @@ def update_port(port, name='', admin_state_up=True, allowed_address_pairs=None, 
     :param name: Name of this port
     :param admin_state_up: Set admin state up to true or false,
             default: true (Optional)
+    :param allowed_address_pairs: A set of zero or more allowed address pairs
+            an addres pair consists of an IP address range and MAC address
+            with the format of {"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}
+            .. code-block:: bash
+
+                salt '*' neutron.update_port port_id \
+                allowed_address_pairs='[{"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}]'
+
+            default: None (Optional)
     :param profile: Profile to build on (Optional)
     :return: Value of updated port information
     '''
