@@ -345,7 +345,7 @@ def create_port(name,
     return conn.create_port(name, network, device_id, admin_state_up)
 
 
-def update_port(port, name, admin_state_up=True, profile=None):
+def update_port(port, name='', admin_state_up=True, allowed_address_pairs=None, profile=None):
     '''
     Updates a port
 
@@ -363,7 +363,7 @@ def update_port(port, name, admin_state_up=True, profile=None):
     :return: Value of updated port information
     '''
     conn = _auth(profile)
-    return conn.update_port(port, name, admin_state_up)
+    return conn.update_port(port, name, admin_state_up, allowed_address_pairs)
 
 
 def delete_port(port, profile=None):

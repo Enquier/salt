@@ -323,18 +323,18 @@ class SaltNeutron(NeutronShell):
             body['device_id'] = device_id
         return self.network_conn.create_port(body={'port': body})
 
-    def update_port(self, port, name, admin_state_up=True, allowed_address_pairs=None):
+    def update_port(self, port, name='', admin_state_up=True, allowed_address_pairs=None):
         '''
         Updates a port
         '''
         port_id = self._find_port_id(port)
-        address_pairs = {}
-        addresses = allowed_address_pairs.len()
-        for address in addresses:
-            address_pairs[address] = {'ip_address': allowed_address_pairs[address]}
-        body = {'name': name,
-                'admin_state_up': admin_state_up,
-                'allowed_address_pairs': address_pairs}
+        if allowed_address_pairs is not None:
+            body = {'name': name,
+                    'admin_state_up': admin_state_up,
+                    'allowed_address_pairs': allowed_address_pairs}
+        else:
+            body = {'name': name,
+                    'admin_state_up': admin_state_up}
         return self.network_conn.update_port(port=port_id,
                                              body={'port': body})
 
