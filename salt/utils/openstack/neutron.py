@@ -328,15 +328,16 @@ class SaltNeutron(NeutronShell):
         Updates a port
         '''
         port_id = self._find_port_id(port)
+        log.debug("ALLOWED ADDRESSES: %s", allowed_address_pairs)
         if allowed_address_pairs is not None:
-            log.debug(allowed_address_pairs)
             body = {'name': name,
                     'admin_state_up': admin_state_up,
                     'allowed_address_pairs': allowed_address_pairs}
-            log.debug(body)
+
         else:
             body = {'name': name,
                     'admin_state_up': admin_state_up}
+        log.debug("PREPARED PAYLOAD: %s", body)
         return self.network_conn.update_port(port=port_id,
                                              body={'port': body})
 
